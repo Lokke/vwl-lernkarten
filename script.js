@@ -4,7 +4,7 @@
 let currentCardIndex = 0;
 let currentCards = [...vwlData];
 let isFlipped = false;
-let quizMode = 'normal'; // 'normal', 'reverse', 'mixed'
+let quizMode = 'mixed'; // 'normal', 'reverse', 'mixed' - Standard ist gemischt
 let currentIsReversed = false;
 
 // DOM Elemente
