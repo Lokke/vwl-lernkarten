@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VWL Lernkarten - Volkswirtschaftslehre</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VWL Lernkarten</h1>
+            <p>Volkswirtschaftslehre lernen mit Karteikarten und Glossar</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-button active" onclick="showTab('flashcards')">Lernkarten</button>
+            <button class="tab-button" onclick="showTab('glossary')">Glossar</button>
+        </nav>
+
+        <!-- Karteikarten Sektion -->
+        <div id="flashcards" class="tab-content active">
+            <div class="controls">
+                <select id="categorySelect" onchange="filterCards()">
+                    <option value="alle">Alle Themen</option>
+                    <option value="grundlagen">Grundlagen der Wirtschaft</option>
+                    <option value="produktion">Produktionsprozess</option>
+                    <option value="kreislauf">Wirtschaftskreislauf</option>
+                    <option value="markt">Markt und Preisbildung</option>
+                    <option value="geld">Geld und Währung</option>
+                    <option value="konjunktur">Konjunktur und Wachstum</option>
+                    <option value="arbeitsmarkt">Arbeitsmarkt</option>
+                    <option value="aussenhandel">Außenhandel</option>
+                    <option value="politik">Wirtschaftspolitik</option>
+                    <option value="europa">Europäische Integration</option>
+                    <option value="international">Internationale Wirtschaft</option>
+                    <option value="umwelt">Umwelt und Nachhaltigkeit</option>
+                </select>
+                <button onclick="shuffleCards()">Mischen</button>
+            </div>
+            
+            <div class="quiz-mode-controls">
+                <label>Quiz-Modus:</label>
+                <select id="quizMode" onchange="switchQuizMode()">
+                    <option value="normal">Normal (Begriff → Definition)</option>
+                    <option value="reverse">Umgekehrt (Definition → Begriff)</option>
+                    <option value="mixed">Gemischt</option>
+                </select>
+                <button id="revealButton" onclick="revealAnswer()" style="display: none;">Antwort zeigen</button>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="card-counter">
+                    <span id="currentCard">1</span> / <span id="totalCards">0</span>
+                </div>
+                
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="card-inner">
+                                        <div class="card-front">
+                    <div class="cardCategoryFront"></div>
+                    <div class="card-content">
+                        <h3 id="term"></h3>
+                        <div class="flip-hint">Klicken zum Umdrehen</div>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="cardCategoryBack"></div>
+                    <div class="card-content">
+                        <p id="definition"></p>
+                        <div class="flip-hint">Klicken zum Umdrehen</div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+
+                <div class="card-navigation">
+                    <button onclick="previousCard()">← Vorherige</button>
+                    <button onclick="nextCard()">Nächste →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glossar Sektion -->
+        <div id="glossary" class="tab-content">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Begriff suchen..." onkeyup="searchGlossary()">
+            </div>
+            
+            <div class="glossary-filters">
+                <button class="filter-btn active" onclick="filterGlossary('alle')">Alle</button>
+                <button class="filter-btn" onclick="filterGlossary('grundlagen')">Grundlagen</button>
+                <button class="filter-btn" onclick="filterGlossary('produktion')">Produktion</button>
+                <button class="filter-btn" onclick="filterGlossary('kreislauf')">Kreislauf</button>
+                <button class="filter-btn" onclick="filterGlossary('markt')">Markt</button>
+                <button class="filter-btn" onclick="filterGlossary('geld')">Geld</button>
+                <button class="filter-btn" onclick="filterGlossary('konjunktur')">Konjunktur</button>
+                <button class="filter-btn" onclick="filterGlossary('arbeitsmarkt')">Arbeitsmarkt</button>
+                <button class="filter-btn" onclick="filterGlossary('aussenhandel')">Außenhandel</button>
+                <button class="filter-btn" onclick="filterGlossary('politik')">Politik</button>
+                <button class="filter-btn" onclick="filterGlossary('europa')">Europa</button>
+                <button class="filter-btn" onclick="filterGlossary('international')">International</button>
+                <button class="filter-btn" onclick="filterGlossary('umwelt')">Nachhaltigkeit</button>
+            </div>
+
+            <div id="glossaryList" class="glossary-list">
+                <!-- Glossar Einträge werden hier eingefügt -->
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
