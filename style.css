@@ -125,21 +125,7 @@ header p {
     color: #2c3e50;
 }
 
-#revealButton {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-    font-weight: bold;
-}
 
-#revealButton:hover {
-    background: linear-gradient(135deg, #c0392b, #a93226);
-}
-
-.card-hidden {
-    filter: blur(8px);
-    pointer-events: none;
-    user-select: none;
-}
 
 .flashcard-container {
     display: flex;

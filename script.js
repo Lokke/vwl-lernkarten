@@ -5,13 +5,12 @@ let currentCardIndex = 0;
 let currentCards = [...vwlData];
 let isFlipped = false;
 let quizMode = 'normal'; // 'normal', 'reverse', 'mixed'
-let isRevealed = false;
 let currentIsReversed = false;
 
 // DOM Elemente
 let flashcard, cardTerm, cardDefinition, cardCategoryFront, cardCategoryBack;
 let currentCardSpan, totalCardsSpan, categorySelect, searchInput, glossaryList;
-let quizModeSelect, revealButton;
+let quizModeSelect;
 
 // DOM Elemente initialisieren
 function initializeDOM() {
@@ -26,7 +25,6 @@ function initializeDOM() {
     searchInput = document.getElementById('searchInput');
     glossaryList = document.getElementById('glossaryList');
     quizModeSelect = document.getElementById('quizMode');
-    revealButton = document.getElementById('revealButton');
 }
 
 // Initialisierung
@@ -88,13 +86,9 @@ function updateCardDisplay() {
         cardCategoryBack.textContent = card.categoryName;
     }
     
-    // Quiz-Modus UI aktualisieren
-    updateQuizModeUI();
-    
     // Karte zurücksetzen (Vorderseite zeigen)
     flashcard.classList.remove('flipped');
     isFlipped = false;
-    isRevealed = false;
 }
 
 function updateCardCounter() {
@@ -310,39 +304,8 @@ function switchQuizMode() {
     updateCardCounter();
 }
 
-function updateQuizModeUI() {
-    if (quizMode === 'normal') {
-        revealButton.style.display = 'none';
-        flashcard.classList.remove('card-hidden');
-    } else {
-        revealButton.style.display = 'inline-block';
-        if (!isRevealed) {
-            // Rückseite der Karte verbergen bis reveal
-            const cardBack = flashcard.querySelector('.card-back');
-            cardBack.classList.add('card-hidden');
-        }
-    }
-}
-
-function revealAnswer() {
-    isRevealed = true;
-    const cardBack = flashcard.querySelector('.card-back');
-    cardBack.classList.remove('card-hidden');
-    revealButton.textContent = 'Nächste Karte';
-    revealButton.onclick = function() {
-        nextCard();
-        revealButton.textContent = 'Antwort zeigen';
-        revealButton.onclick = revealAnswer;
-    };
-}
-
-// Erweiterte flipCard Funktion für Quiz-Modus
+// Einfache flipCard Funktion
 function flipCard() {
-    if (quizMode !== 'normal' && !isRevealed) {
-        // Im Quiz-Modus erst nach reveal umdrehen
-        return;
-    }
-    
     flashcard.classList.toggle('flipped');
     isFlipped = !isFlipped;
 }
